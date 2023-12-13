@@ -151,11 +151,6 @@ const calcular = () => {
 
 inicio = new Date();
 console.log('salida', calcular());
-//console.log('salida', contarPuntosInternos([ '.', '.', 'F', '7', '.' ]));
-//const cadenaEntrada = '.??..??...?##.';
-//const salidaEsperada = [1, 1, 3];
-//const resultado = encontrarCombinaciones(cadenaEntrada, salidaEsperada);
-//console.log(resultado);
 fin = new Date();
 tiempoTranscurrido = fin - inicio;
 console.log(`Tiempo transcurrido: ${tiempoTranscurrido} milisegundos`);
