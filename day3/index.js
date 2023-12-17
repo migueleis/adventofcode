@@ -1,4 +1,4 @@
-const entry = require('./entry');
+const {demo, entry} = require('./entry');
 
 
 
@@ -102,6 +102,15 @@ function encontrarNumerosAdyacentes(lineas) {
 
 const lineas = entry.split('\n');
 console.log(encontrarNumerosAdyacentes(lineas));
+
+inicio = new Date();
+console.log("demo part1", calcular(demo));
+//console.log("entry part1", calcular(entry));
+//console.log("demo part2", calcular2(demo));
+//console.log("entry part2", calcular2(entry));
+fin = new Date();
+tiempoTranscurrido = fin - inicio;
+console.log(`Tiempo transcurrido: ${tiempoTranscurrido} milisegundos`);
 
 /*let total = 0;
 let firstLine = lines[0];

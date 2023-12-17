@@ -117,32 +117,3 @@ console.log('minima position', calcular());
 /*const sd = 82;
 console.log('seed', sd);
 const location = calcularLocation(sd);*/
-
-/** Sumar valores del array */
-/****************************/
-//total.reduce((acumulador, valorActual) => acumulador + valorActual, 0);
-
-
-/** Extraer los numeros separados por espacio */
-/**********************************************/
-//trim -> quito espacios en blanco al principio y fin
-//split /\s+/ -> delimitador es una secuencia de espacios 1 o mas
-//map(Number) -> convierto los substring en numeros
-//const numerosGanadores = numeros[0].trim().split(/\s+/).map(Number);
-
-
-/** Compruebo si es numero */
-/***************************/
-//isNaN(letter) -> true si letter no es un numero
-
-
-/** Convertir string en numero */
-/*******************************/
-//parseInt(str, 10);
-
-
-/** Función para verificar si un carácter es un dígito */
-/*******************************************************/
-/* function esDigito(caracter) {
-    return /\d/.test(caracter);
-}*/
