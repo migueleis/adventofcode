@@ -12,7 +12,6 @@ const buscaInicial = (mapa) => {
     for (let i = 0; i < mapa.length; i++) {
         const j = mapa[i].indexOf('S');
         if (j !== -1) {
-            // Se encontró el carácter, devuelve las posiciones i y j
             return { i, j };
         }
     }
@@ -33,7 +32,6 @@ const iniciaMapaHuecos = (mapa) => {
 
 const calcular2 = () => {
     const mapa = analizarEntrada();
-    let { i, j } = buscaInicial(mapa);
     let mmap = [];
     for (let y = 0; y < mapa.length * 3; y++) {
         mmap[y] = [];
@@ -41,7 +39,6 @@ const calcular2 = () => {
             mmap[y][x] = ".";
         }
     }
-    console.log('mmap', mmap);
     let start = [];
     for (let y in mapa) {
         if (mapa[y].indexOf("S") >= 0) {
@@ -72,9 +69,6 @@ const calcular2 = () => {
     } while (py != start[0] || px != start[1]);
     console.log('mmap', mmap);
     console.log(steps / 2)
-    //console.log(mmap.map(x=>x.join("")).join("\n"));
-
-    //bfs from corner to find all outside spots
     let queue = [[0, 0]];
     while (queue.length > 0) {
         let [cy, cx] = queue.pop();
@@ -85,7 +79,6 @@ const calcular2 = () => {
         if (cy < mmap.length - 1 && mmap[cy + 1][cx] == '.') queue.push([cy + 1, cx]);
         if (cx < mmap[0].length - 1 && mmap[cy][cx + 1] == '.') queue.push([cy, cx + 1]);
     }
-    //console.log(mmap.map(x=>x.join("")).join("\n"));
 
     let ret = 0;
     for (let y = 1; y < mmap.length; y += 3) {
@@ -99,8 +92,6 @@ const calcular2 = () => {
 const nextStep = (dir, x, y, mapa) => {
     let deltaX = 0;
     let deltaY = 0;
-    //console.log(x, y, dir);
-    //console.log("nextStep", mapa[y][x] + dir);
     switch (mapa[y][x] + dir) {
         case '|S':
             deltaY = 1;
@@ -172,8 +163,6 @@ const calcular = () => {
         steps++;
         path.push({ x, y });
     }
-    //console.log(path);
-    //console.log(steps / 2);
     return 0;
 }
 
@@ -231,8 +220,6 @@ function contarElementosConPunto(array) {
 const calcular3 = () => {
     const mapa = analizarEntrada();
     const mapaH = iniciaMapaHuecos(mapa);
-    console.log('mapa', mapa)
-    console.log('mapaH', mapaH);
     let { i, j } = buscaInicial(mapa);
     mapaH[i][j] = 'S';
     let y = i + 1;
@@ -247,23 +234,19 @@ const calcular3 = () => {
         steps++;
         path.push({ x, y });
     }
-    console.log('mapaH', mapaH);
     const mapaSinExt = borraPuntosExternos(mapaH);
-    console.log('mapaSinExt', mapaSinExt)
     let puntos = 0;
     mapaSinExt.forEach(row => {
         puntos += contarElementosConPunto(row);
         console.log(puntos);
     })
-    //console.log(path);
-    //console.log(steps / 2);
     return puntos;
 }
 
 
 
 inicio = new Date();
-console.log('salida', calcular3());
+console.log('salida', calcular2());
 //console.log('salida', contarPuntosInternos([ '.', '.', 'F', '7', '.' ]));
 fin = new Date();
 tiempoTranscurrido = fin - inicio;
