@@ -21,24 +21,16 @@ function contarCaracteres(cadena) {
     return frecuencia;
 }
 
-
-
 const analizarEntrada = () => {
     const lineas = entry.split('\n');
     const resultado = [[], [], [], [], [], [], []];
     let total = 0;
     lineas.forEach(camelCard => {
-        //console.log('>>>>camelCard', camelCard);
         const card = camelCard.trim().split(' ');
-        //console.log('card', card);
         const cadena = card[0];
-        //console.log('cadena', cadena);
         const valor = card[1];
-        //console.log('valor', valor);
         const frecuencia = contarCaracteres(cadena);
-        //console.log('frecuencia', frecuencia);
         const valoresFrecuencia = Object.values(frecuencia);
-
 
         if (valoresFrecuencia.every(count => count === 1)) {
             resultado[0].push({ cadena: cadena, valor: parseInt(valor) });
@@ -55,154 +47,27 @@ const analizarEntrada = () => {
         } else {
             resultado[6].push({ cadena: cadena, valor: parseInt(valor) });
         }
-
-        //console.log('resultado', resultado);
     })
 
     ordenarCadenasPorValores(resultado)
 
-    console.log('resultado ordenado', resultado);
-
-
     let indice = 1;
     resultado.forEach(array => {
         array.forEach(cad => {
-            //console.log("cad", cad.cadena, cad.valor);
             total += cad.valor * indice;
-            //console.log('total = valor * indice', total, cad.valor, indice);
-            //console.log('total', total);
             indice++;
-            //console.log('indice', indice);
         })
     })
 
     return total;
-
 }
 
-const analizarEntrada2 = () => {
-    const lineas = entry.split('\n');
-    const resultado = [[], [], [], [], [], [], []];
-    let total = 0;
-    lineas.forEach(camelCard => {
-        //console.log('>>>>camelCard', camelCard);
-        const card = camelCard.trim().split(' ');
-        //console.log('card', card);
-        const cadena = card[0];
-        //console.log('cadena', cadena);
-        const valor = card[1];
-        //console.log('valor', valor);
-        const frecuencia = contarCaracteres(cadena);
-        console.log('frecuencia', frecuencia);
-        const valoresFrecuencia = Object.values(frecuencia);
-
-        if (cadena.includes('J')) {
-            console.log("especial");
-            const indice = indiceMejorMano(cadena);
-            resultado[indice].push({ cadena: cadena, valor: parseInt(valor) });
-        } else {
-            if (valoresFrecuencia.every(count => count === 1)) {
-                resultado[0].push({ cadena: cadena, valor: parseInt(valor) });
-            } else if (valoresFrecuencia.includes(2) && valoresFrecuencia.filter(count => count === 1).length === 3) {
-                resultado[1].push({ cadena: cadena, valor: parseInt(valor) });
-            } else if (valoresFrecuencia.includes(2) && valoresFrecuencia.filter(count => count === 2).length === 2) {
-                resultado[2].push({ cadena: cadena, valor: parseInt(valor) });
-            } else if (valoresFrecuencia.includes(3) && !valoresFrecuencia.includes(2)) {
-                resultado[3].push({ cadena: cadena, valor: parseInt(valor) });
-            } else if (valoresFrecuencia.includes(3) && valoresFrecuencia.includes(2)) {
-                resultado[4].push({ cadena: cadena, valor: parseInt(valor) });
-            } else if (valoresFrecuencia.includes(4)) {
-                resultado[5].push({ cadena: cadena, valor: parseInt(valor) });
-            } else {
-                resultado[6].push({ cadena: cadena, valor: parseInt(valor) });
-            }
-        }
-
-
-
-
-
-
-        //console.log('resultado', resultado);
-    })
-
-    ordenarCadenasPorValores(resultado)
-
-    console.log('resultado ordenado', resultado);
-
-
-    let indice = 1;
-    resultado.forEach(array => {
-        array.forEach(cad => {
-            //console.log("cad", cad.cadena, cad.valor);
-            total += cad.valor * indice;
-            //console.log('total = valor * indice', total, cad.valor, indice);
-            //console.log('total', total);
-            indice++;
-            //console.log('indice', indice);
-        })
-    })
-
-    return total;
-
-}
-
-function ordenarCadenasPorValores(arrays) {
-    const orden = "23456789TJQKA";
-    const orden2 = "J23456789TQKA";
-
-    //console.log('arrays', arrays);
-
-    arrays.forEach((array, index) => {
-        /*if (index === 0) {*/
-        array.sort((a, b) => {
-            for (let i = 0; i < Math.min(a.cadena.length, b.cadena.length); i++) {
-                const valorA = orden2.indexOf(a.cadena[i]);
-                const valorB = orden2.indexOf(b.cadena[i]);
-
-                if (valorA !== valorB) {
-                    return valorA - valorB;
-                }
-            }
-            return 0;
-        });
-        /*} else {
-            array.sort((a, b) => {
-                for (let i = 0; i < Math.min(a.cadena.length, b.cadena.length); i++) {
-                    const valorA = orden.indexOf(a.cadena[i]);
-                    const valorB = orden.indexOf(b.cadena[i]);
-
-                    if (valorA !== valorB) {
-                        return valorA - valorB;
-                    }
-                }
-                return 0;
-            });
-        }*/
-
-    });
-}
-
-const calcular = () => {
-    return analizarEntrada2();
-}
-
-
-inicio = new Date();
-console.log('salida', calcular());
-fin = new Date();
-tiempoTranscurrido = fin - inicio;
-console.log(`Tiempo transcurrido: ${tiempoTranscurrido} milisegundos`);
 
 function indiceMejorMano(cadena) {
     // Contar la frecuencia de cada letra en la cadena
-    console.log('cadena', cadena);
     const replaced = cadena.replaceAll('J', '');
-    console.log('replaced', replaced);
     const frecuencia = contarCaracteres(replaced);
-    //console.log('frecuencia', frecuencia);
     const valoresFrecuencia = Object.values(frecuencia);
-    //console.log('valoresFrecuencia', valoresFrecuencia);
 
     if (replaced.length === 4) {
         if (valoresFrecuencia.every(count => count === 1)) {
@@ -233,9 +98,86 @@ function indiceMejorMano(cadena) {
     } else {
         return 6;
     }
+}
 
+const analizarEntrada2 = () => {
+    const lineas = entry.split('\n');
+    const resultado = [[], [], [], [], [], [], []];
+    let total = 0;
+    lineas.forEach(camelCard => {
+        const card = camelCard.trim().split(' ');
+        const cadena = card[0];
+        const valor = card[1];
+        const frecuencia = contarCaracteres(cadena);
+        const valoresFrecuencia = Object.values(frecuencia);
+
+        if (cadena.includes('J')) {
+            const indice = indiceMejorMano(cadena);
+            resultado[indice].push({ cadena: cadena, valor: parseInt(valor) });
+        } else {
+            if (valoresFrecuencia.every(count => count === 1)) {
+                resultado[0].push({ cadena: cadena, valor: parseInt(valor) });
+            } else if (valoresFrecuencia.includes(2) && valoresFrecuencia.filter(count => count === 1).length === 3) {
+                resultado[1].push({ cadena: cadena, valor: parseInt(valor) });
+            } else if (valoresFrecuencia.includes(2) && valoresFrecuencia.filter(count => count === 2).length === 2) {
+                resultado[2].push({ cadena: cadena, valor: parseInt(valor) });
+            } else if (valoresFrecuencia.includes(3) && !valoresFrecuencia.includes(2)) {
+                resultado[3].push({ cadena: cadena, valor: parseInt(valor) });
+            } else if (valoresFrecuencia.includes(3) && valoresFrecuencia.includes(2)) {
+                resultado[4].push({ cadena: cadena, valor: parseInt(valor) });
+            } else if (valoresFrecuencia.includes(4)) {
+                resultado[5].push({ cadena: cadena, valor: parseInt(valor) });
+            } else {
+                resultado[6].push({ cadena: cadena, valor: parseInt(valor) });
+            }
+        }
+
+    })
+
+    ordenarCadenasPorValores(resultado)
+
+    let indice = 1;
+    resultado.forEach(array => {
+        array.forEach(cad => {
+            total += cad.valor * indice;
+            indice++;
+        })
+    })
+
+    return total;
 
 }
+
+function ordenarCadenasPorValores(arrays) {
+    const orden = "23456789TJQKA";
+    const orden2 = "J23456789TQKA";
+
+    arrays.forEach((array, index) => {
+        array.sort((a, b) => {
+            for (let i = 0; i < Math.min(a.cadena.length, b.cadena.length); i++) {
+                const valorA = orden2.indexOf(a.cadena[i]);
+                const valorB = orden2.indexOf(b.cadena[i]);
+
+                if (valorA !== valorB) {
+                    return valorA - valorB;
+                }
+            }
+            return 0;
+        });
+    });
+}
+
+const calcular = () => {
+    return analizarEntrada2();
+}
+
+
+inicio = new Date();
+console.log('salida', calcular());
+fin = new Date();
+tiempoTranscurrido = fin - inicio;
+console.log(`Tiempo transcurrido: ${tiempoTranscurrido} milisegundos`);
+
 
 // Ejemplos de uso
 const cadenaEjemplo1 = "JJJJJ";
