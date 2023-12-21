@@ -8,7 +8,7 @@ function shortestPathOnGrid(start, end) {
     return Math.abs(x1 - x2) + Math.abs(y1 - y2);
 }
 
-const analizarEntrada = () => {
+const part1 = () => {
     const grid = entry.split('\n').map((line) => line.split(""));
     console.log('grid', grid);
     //look for empty rows (all .)
@@ -69,7 +69,7 @@ const analizarEntrada = () => {
     console.log(pathSum);
 }
 
-const analizarEntrada2 = () => {
+const part2 = () => {
     const grid = entry.split('\n').map((line) => line.split(""));
     console.log('grid', grid);
     const galaxies = []
@@ -132,20 +132,12 @@ const analizarEntrada2 = () => {
         }
     }
 
-    console.log(pathSum);
+    return pathSum;
 }
-
-const calcular = () => {
-    analizarEntrada2();
-
-    return 0;
-}
-
 
 
 inicio = new Date();
-console.log('salida', calcular());
-//console.log('salida', contarPuntosInternos([ '.', '.', 'F', '7', '.' ]));
+console.log('salida', part2());
 fin = new Date();
 tiempoTranscurrido = fin - inicio;
 console.log(`Tiempo transcurrido: ${tiempoTranscurrido} milisegundos`);
