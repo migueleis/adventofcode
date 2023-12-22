@@ -1,22 +1,22 @@
 const { demo, entry } = require('./entry');
 
-const analizarEntrada = (data) => {
-    const lineas = data.split('\n');
+const analyzeData = (data) => {
+    const lines = data.split('\n');
 
-    return lineas;
+    return lines;
 }
 
 const part1 = (data) => {
-    const entrada = analizarEntrada(data);
-    console.log('entrada', entrada);
+    const input = analyzeData(data);
+    console.log('input', input);
     let count = 0;
 
     return count;
 }
 
 const part2 = (data) => {
-    const entrada = analizarEntrada(data);
-    console.log('entrada', entrada);
+    const input = analyzeData(data);
+    console.log('input', input);
     let count = 0;
 
     return count;
