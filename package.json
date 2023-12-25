@@ -10,6 +10,11 @@
   "author": "",
   "license": "ISC",
   "devDependencies": {
+    "@types/regenerator-runtime": "^0.13.5",
+    "regenerator-runtime": "^0.14.1",
     "z3-solver": "^4.12.4"
+  },
+  "dependencies": {
+    "@graph-algorithm/minimum-cut": "^2.0.0"
   }
 }
